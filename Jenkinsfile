@@ -43,7 +43,14 @@ pipeline{
                 }
             }
         }
-        
+        stage ('Funcional Api'){
+            steps{
+                dir('funcional-test'){
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/weydeDosSantos/tasks-funcional-testes'
+                    bat 'mvn test'          
+                }
+            }
+        }     
     }   
 }
-   https://github.com/weydeDosSantos/tasks-frontend  
+  
