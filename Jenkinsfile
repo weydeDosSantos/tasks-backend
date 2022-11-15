@@ -21,9 +21,17 @@ pipeline{
                 }
             }
         }  
-        stage ('Deply Backend'){
+        stage ('Deploy Backend'){
             steps{
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+            }
+        }
+        stage ('Teste Api'){
+            steps{
+                dir('api-test'){
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/weydeDosSantos/tasks-api'
+                    bat 'mvn test'          
+                }
             }
         }
     }   
