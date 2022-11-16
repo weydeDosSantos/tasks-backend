@@ -43,7 +43,7 @@ pipeline{
                 }
             }
         }
-        stage ('Funcional Api'){
+        stage ('Funcional test'){
             steps{
                 dir('funcional-test'){
                     git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/weydeDosSantos/tasks-funcional-testes'
